@@ -30,3 +30,4 @@ Temporary Items
 
 #!! ERROR: pebble is undefined. Use list command to see defined gitignore types !!#
 build
+.lock-waf_darwin_build
