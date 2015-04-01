@@ -6,7 +6,8 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -28,3 +29,4 @@ Temporary Items
 
 
 #!! ERROR: pebble is undefined. Use list command to see defined gitignore types !!#
+build
