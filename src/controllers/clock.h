@@ -1,6 +1,6 @@
 #pragma once
 
-#define USE_MOUSTACHE true
+#define USE_MOUSTACHE false
 
 void clock_init();
 void clock_deinit();

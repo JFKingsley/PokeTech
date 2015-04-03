@@ -1,12 +1,15 @@
 #include <pebble.h>
 #include "controllers/clock.h"
+#include "controllers/settings.h"
 
 static void init(void) {
   clock_init();
+  settings_init();
 }
 
 static void deinit(void) {
   clock_deinit();
+  settings_deinit();
 }
 
 int main(void) {

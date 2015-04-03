@@ -28,7 +28,17 @@
             {
                 "type": "png",
                 "name": "IMAGE_PIKACHU_MOUSTACHE",
-                "file": "images/pikachu_moustache.png"
+                "file": "images/moustache.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_PIKACHU_HAT_FEDORA",
+                "file": "images/hats/fedora.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_PIKACHU_HAT_FEZ",
+                "file": "images/hats/fez.png"
             }
         ]
     }
