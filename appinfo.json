@@ -6,12 +6,11 @@
     "versionCode": 1,
     "versionLabel": "1.0",
     "sdkVersion": "3",
-    "targetPlatforms": ["aplite", "basalt"],
+    "targetPlatforms": ["basalt"],
     "watchapp": {
         "watchface": false
     },
     "appKeys": {
-      "debug": true
     },
     "resources": {
         "media": [
@@ -20,6 +19,16 @@
                 "type": "png",
                 "name": "IMAGE_MENU_ICON",
                 "file": "images/menu_icon.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_PIKACHU",
+                "file": "images/pikachu.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_PIKACHU_MOUSTACHE",
+                "file": "images/pikachu_moustache.png"
             }
         ]
     }

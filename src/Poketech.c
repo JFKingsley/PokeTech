@@ -12,7 +12,7 @@ static void deinit(void) {
 int main(void) {
   init();
 
-  APP_LOG(APP_LOG_LEVEL_DEBUG, "Done initializing, pushed digital clock window");
+  APP_LOG(APP_LOG_LEVEL_DEBUG, "Done initializing, pushing digital clock window...");
 
   app_event_loop();
   deinit();
