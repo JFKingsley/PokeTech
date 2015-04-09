@@ -39,6 +39,11 @@
                 "type": "png",
                 "name": "IMAGE_PIKACHU_HAT_FEZ",
                 "file": "images/hats/fez.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_JON_HEADSHOT",
+                "file": "images/headshots/jon.png"
             }
         ]
     }
