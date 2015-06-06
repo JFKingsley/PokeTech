@@ -6,13 +6,30 @@ static Window *main_window;
 
 static TextLayer *text_layer;
 static Layer *bg_layer;
+static int current_hat;
 
-static BitmapLayer *pikachu_icon_layer;
-static GBitmap *pikachu_icon_bitmap;
+static BitmapLayer *pikachu_icon_layer, *pikachu_hat_layer, *time_digits_layers[TOTAL_TIME_DIGITS];
+static GBitmap *pikachu_icon_bitmap, *time_digits[TOTAL_TIME_DIGITS];
 
-static const uint32_t PIKACHU_ICONS[] = {
-  RESOURCE_ID_IMAGE_PIKACHU, //0
-  RESOURCE_ID_IMAGE_PIKACHU_MOUSTACHE //1
+static const uint32_t PIKACHU_HATS[] = {
+  RESOURCE_ID_IMAGE_PIKACHU_HAT_FEDORA, //0
+  RESOURCE_ID_IMAGE_PIKACHU_HAT_FEZ //1
+};
+
+static const uint32_t CLOCK_NUMBERS[] = {
+  RESOURCE_ID_IMAGE_CLOCK_AM, //0
+  RESOURCE_ID_IMAGE_CLOCK_PM, //1
+  RESOURCE_ID_IMAGE_CLOCK_COLON, //2
+  RESOURCE_ID_IMAGE_CLOCK_ONE, //3
+  RESOURCE_ID_IMAGE_CLOCK_TWO, //4
+  RESOURCE_ID_IMAGE_CLOCK_THREE, //5
+  RESOURCE_ID_IMAGE_CLOCK_FOUR, //6
+  RESOURCE_ID_IMAGE_CLOCK_FIVE, //7
+  RESOURCE_ID_IMAGE_CLOCK_SIX, //8
+  RESOURCE_ID_IMAGE_CLOCK_SEVEN, //9
+  RESOURCE_ID_IMAGE_CLOCK_EIGHT, //10
+  RESOURCE_ID_IMAGE_CLOCK_NINE, //11
+  RESOURCE_ID_IMAGE_CLOCK_ZERO, //12
 };
 
 static void select_long_click_handler(ClickRecognizerRef recognizer, void *context) {
@@ -34,6 +51,17 @@ static void click_config_provider(void *context) {
   window_long_click_subscribe(BUTTON_ID_SELECT, 700, select_long_click_handler, NULL);
 }
 
+void update_hat(int new_hat) {
+  if(new_hat > 0) {
+    layer_set_hidden(bitmap_layer_get_layer(pikachu_hat_layer), false);
+    current_hat = new_hat;
+    layer_mark_dirty(bitmap_layer_get_layer(pikachu_hat_layer));
+
+  } else {
+    layer_set_hidden(bitmap_layer_get_layer(pikachu_hat_layer), true);
+  }
+}
+
 static void bg_layer_draw(Layer *layer, GContext *ctx) {
   GRect bounds = layer_get_bounds(layer);
   // Draw the status bar and darker bottom lines
@@ -53,11 +81,31 @@ static void bg_layer_draw(Layer *layer, GContext *ctx) {
   //Add the image to the later and handle transparency
   bitmap_layer_set_bitmap(pikachu_icon_layer, pikachu_icon_bitmap);
   bitmap_layer_set_compositing_mode(pikachu_icon_layer, GCompOpSet);
+
+  //Add the pikachu hat layer onto the background
+  pikachu_hat_layer = bitmap_layer_create(GRect(35, (bounds.size.h - 51), 40, 20));
+  layer_add_child(layer, bitmap_layer_get_layer(pikachu_hat_layer));
+  bitmap_layer_set_compositing_mode(pikachu_hat_layer, GCompOpSet);
+
+  if(current_hat > 0) {
+    //Add the image to the later and handle transparency
+    bitmap_layer_set_bitmap(pikachu_hat_layer, gbitmap_create_with_resource(PIKACHU_HATS[current_hat - 1]));
+  }
+}
+
+static void clock_draw(Layer *layer) {
+  time_digits_layers[0] = NULL;
+  time_digits[0] = NULL;
 }
 
 static void main_window_load(Window *window) {
   Layer *window_layer = window_get_root_layer(main_window);
   GRect bounds = layer_get_bounds(window_layer);
+  current_hat = 0;
+  if (persist_exists(PIKACHU_HAT_KEY)) {
+    // Load stored count
+    current_hat = persist_read_int(PIKACHU_HAT_KEY);
+  }
 
   //Draw all background coloring
   bg_layer = layer_create(bounds);
@@ -69,6 +117,8 @@ static void main_window_load(Window *window) {
   text_layer_set_text(text_layer, "Press a button");
   text_layer_set_text_alignment(text_layer, GTextAlignmentCenter);
   layer_add_child(bg_layer, text_layer_get_layer(text_layer));
+
+  clock_draw(bg_layer);
 }
 
 static void main_window_unload(Window *window) {
@@ -79,6 +129,7 @@ static void main_window_unload(Window *window) {
 void clock_init() {
   main_window = window_create();
   pikachu_icon_bitmap = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_PIKACHU);
+  current_hat = 0;
 
   //Setup the window click handlers, background color and winow handlers
   window_set_click_config_provider(main_window, click_config_provider);

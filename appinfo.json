@@ -44,6 +44,71 @@
                 "type": "png",
                 "name": "IMAGE_JON_HEADSHOT",
                 "file": "images/headshots/jon.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_CLOCK_AM",
+                "file": "fonts/digital_clock/am.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_CLOCK_PM",
+                "file": "fonts/digital_clock/pm.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_CLOCK_COLON",
+                "file": "fonts/digital_clock/colon.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_CLOCK_ONE",
+                "file": "fonts/digital_clock/one.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_CLOCK_TWO",
+                "file": "fonts/digital_clock/two.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_CLOCK_THREE",
+                "file": "fonts/digital_clock/three.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_CLOCK_FOUR",
+                "file": "fonts/digital_clock/four.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_CLOCK_FIVE",
+                "file": "fonts/digital_clock/five.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_CLOCK_SIX",
+                "file": "fonts/digital_clock/six.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_CLOCK_SEVEN",
+                "file": "fonts/digital_clock/seven.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_CLOCK_EIGHT",
+                "file": "fonts/digital_clock/eight.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_CLOCK_NINE",
+                "file": "fonts/digital_clock/nine.png"
+            },
+            {
+                "type": "png",
+                "name": "IMAGE_CLOCK_ZERO",
+                "file": "fonts/digital_clock/zero.png"
             }
         ]
     }

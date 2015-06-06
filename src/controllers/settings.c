@@ -1,5 +1,6 @@
 #include <pebble.h>
 #include "settings.h"
+#include "clock.h"
 
 static Window *main_window;
 
@@ -21,7 +22,8 @@ static void menu_select_callback(int index, void *ctx) {
     } else {
       current_hat++;
     }
-
+    persist_write_int(PIKACHU_HAT_KEY, current_hat);
+    update_hat(current_hat);
     menu_items[index].subtitle = hatTypes[current_hat];
     layer_mark_dirty(simple_menu_layer_get_layer(menu_layer));
   } else if(index == 1) {
@@ -122,7 +124,6 @@ void settings_init() {
 
 void settings_deinit() {
   persist_write_bool(WATCH_TYPE_KEY, isWatchfaceAnalog);
-  persist_write_int(PIKACHU_HAT_KEY, current_hat);
   window_destroy(main_window);
 }
 
